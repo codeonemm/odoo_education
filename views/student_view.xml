@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+	<!-- Menu Items -->
+        <menuitem id="menu_root" name="Education" sequence="112" />
+        <menuitem id="menu_enroll_related" name="Enroll Management" parent="menu_root"/>
+	
+	<record id="view_student_entry_form" model="ir.ui.view">
+            <field name="name">student.entry.form</field>
+            <field name="model">student.student</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Student">
+		    <header>
+			<field name="state" widget="statusbar" statusbar_visiable="draft, confirm, pay, book_receive, done" />
+		    </header>
+		    <sheet>
+			<group>
+			    <group colspan="4" col="4">
+				<field name="name" />
+				<field name="date_of_birth" />
+				<field name="father_name" />
+				<field name="nrc" />
+				<field name="phone" />
+				<field name="address" />
+				<field name="nation" />
+				<field name="gender" />
+				<field name="email" />
+				<field name="fees" />
+				<field name="major_id" />
+			    </group>
+			    <group colspan="4" col="4">
+				<field name="high_school_id" />
+				<field name="high_school_score" />
+			    </group>
+			</group>
+			<notebook>
+			    <page string="Attachments">
+				<field name="attachment_ids">
+				    <tree>
+					<field name="datas" />
+				    </tree>
+				</field>
+			    </page>
+			</notebook>
+		    </sheet>
+		</form>
+	    </field>
+	</record>
+	
+	<record model="ir.ui.view" id="view_student_entry_tree">
+            <field name="name">student.entry.tree</field>
+            <field name="model">student.student</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Student">
+                    <field name="name" />
+		    <field name="date_of_birth" />
+		    <field name="father_name" />
+		    <field name="nrc" />
+		    <field name="phone" />
+		    <field name="address" />
+		    <field name="nation" />
+		    <field name="gender" />
+		    <field name="email" />
+		    <field name="fees" />
+		    <field name="major_id" />
+                </tree>
+            </field>
+        </record>
+	
+	<record model="ir.actions.act_window" id="action_student_entry">
+            <field name="name">Student</field>
+            <field name="res_model">student.student</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_student_entry_tree" />
+            <!-- <field name="domain">[('state', '!=', 'unassigned')]</field> -->
+            <!--<field name="search_view_id" ref="task_filter_view"/> -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new student.
+                </p><p>
+                    First paragraph...
+                </p><p>
+                    Another paragraph...
+                </p>
+            </field>
+        </record>
+	
+        <menuitem id="menu_student" name="Student" parent="menu_enroll_related" sequence="2"
+                  action="action_student_entry" />
+    </data>
+</openerp>

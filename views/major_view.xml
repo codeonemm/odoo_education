@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+	<record id="view_major_form" model="ir.ui.view">
+            <field name="name">major.form</field>
+            <field name="model">major</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Major">
+		    <sheet>
+			<group>
+			    <field name="name" />
+			</group>
+			<notebook>
+			    <page string="Subjects">
+				<field name="subject_ids">
+				    <form>
+					<group>
+					    <field name="name" />
+					    <field name="description" />
+					</group>
+				    </form>
+				    <tree>
+					<field name="name" />
+					<field name="description" />
+				    </tree>
+				</field>
+			    </page>
+			</notebook>
+		    </sheet>
+		</form>
+	    </field>
+	</record>
+	
+	<record model="ir.ui.view" id="view_major_tree">
+            <field name="name">major.tree</field>
+            <field name="model">major</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Major">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+	
+	<record model="ir.actions.act_window" id="action_major">
+            <field name="name">Major</field>
+            <field name="res_model">major</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_major_tree" />
+            <!-- <field name="domain">[('state', '!=', 'unassigned')]</field> -->
+            <!--<field name="search_view_id" ref="task_filter_view"/> -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new major.
+                </p><p>
+                    First paragraph...
+                </p><p>
+                    Another paragraph...
+                </p>
+            </field>
+        </record>
+	
+	<menuitem id="menu_major" name="Major" parent="menu_enroll_related" sequence="1"
+                  action="action_major" />
+    </data>
+</openerp>
