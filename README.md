@@ -1,29 +1,18 @@
-# README #
+Education Management System Odoo Module
+=====================
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Enroll Management
+Attance Management
+Exam Result Management
+Library Management
 
-### What is this repository for? ###
+Credits
+=======
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Contributors
+------------
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Sithu Aung <faceless.void199@gmail.com>
+* Ko Lin <yethwae.yeyintthwae@gmail.com>
+* Pyae Phone Kyaw <pyayphonekyaw@gmail.com>
+* Soe Ye Aung <soeye.aung1994@gmail.com>
