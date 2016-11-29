@@ -15,7 +15,7 @@ class student(models.Model):
     pob = fields.Char("Place of Birth", required=True)
     martial = fields.Selection([('single', 'Single'), ('married', 'Married')], "Martial Status", required=True)
     curyear = fields.Char("Current Year", required=True)
-    religion = fields.Char("Religion", required=True)
+    religion = fields.Selection([('buddhism', 'Buddhism'), ('christianity', 'Christianity'), ('hinduism', 'Hinduism'), ('islam', 'Islam')], "Religion", required=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], "Gender", required=True)
     email = fields.Char("Email", required=True)
     fees = fields.Float("Fees", required=True)
