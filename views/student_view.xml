@@ -5,100 +5,67 @@
         <menuitem id="menu_root" name="Education" sequence="112" />
         <menuitem id="menu_enroll_related" name="Enroll Management" parent="menu_root"/>
 	
-	<record id="view_student_entry_form" model="ir.ui.view">
-            <field name="name">student.entry.form</field>
-            <field name="model">student.student</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="Student">
-		    <header>
-			<field name="state" widget="statusbar" statusbar_visiable="draft, confirm, pay, book_receive, done" />
-		    </header>
-		    <sheet>
-			<group>
-			    <group colspan="4" col="4">
-				<field name="name" />
-				<field name="date_of_birth" />
-				<field name="father_name" />
-				<field name="nrc" />
-				<field name="martial" />
-				<field name="phone" />
-				<field name="address" />
-				<field name="pob" />
-				<field name="curyear" />
-				<field name="nation" />
-				<field name="race" />
-				<field name="religion" />
-				<field name="gender" />
-				<field name="email" />
-				<field name="fees" />
-				<field name="major_id" />
-			    </group>
-			    <group colspan="4" col="4">
-				<field name="high_school_id" />
-				<field name="high_school_score" />
-			    </group>
-			</group>
-			<notebook>
-			    <page string="Attachments">
-				<field name="attachment_ids">
-				    <tree>
-					<field name="datas" />
-				    </tree>
-				</field>
-			    </page>
-			</notebook>
-		    </sheet>
-		</form>
+	<record id="view_employee_form_inherit_student" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit.student</field>
+            <field name="model">hr.employee</field>
+	    <field name="inherit_id" ref="view_employee_form_inherit"/>
+	    <field name="domain">[('student','=',1)]</field>
+	    <field name="arch" type="xml">
+		
+		<field name="country_id" position="replace">
+		    <field name="nation" attrs="{'required': [('student', '=', True)]}" />
+		</field>
+		
+		<field name="address_home_id" position="after">
+		    <field name="father_name" attrs="{'required': [('student', '=', True)]}" />
+		    <field name="nrc" attrs="{'required': [('student', '=', True)]}" />
+		    <field name="pob" attrs="{'required': [('student', '=', True)]}" />
+		    <field name="martial" attrs="{'required': [('student', '=', True)]}" />
+		    <field name="curyear" attrs="{'required': [('student', '=', True)]}" />
+		    <field name="religion" attrs="{'required': [('student', '=', True)]}" />
+		    <field name="gender" attrs="{'required': [('student', '=', True)]}" />
+		    <field name="high_school_id" attrs="{'required': [('student', '=', True)]}" />
+		    <field name="high_school_score" attrs="{'required': [('student', '=', True)]}" />
+		</field>
+		
+		<field name="teacher" position="after">
+		    <field name="student" />
+		    <field name="major_id" attrs="{'required': ['|', ('teacher', '=', True), ('student', '=', True)]}" />
+		</field>
+		
+		<xpath expr="//sheet/notebook/page[@string='HR Settings']" position="after">
+		    <page string="Attachments">
+			<field name="attachment_ids">
+			    <tree>
+				<field name="datas" />
+			    </tree>
+			</field>
+		    </page>
+		</xpath>
 	    </field>
 	</record>
 	
-	<record model="ir.ui.view" id="view_student_entry_tree">
-            <field name="name">student.entry.tree</field>
-            <field name="model">student.student</field>
-            <field name="type">tree</field>
-            <field name="arch" type="xml">
-                <tree string="Student">
-                    <field name="name" />
-		    <field name="date_of_birth" />
-		    <field name="father_name" />
-		    <field name="nrc" />
-		    <field name="martial" />
-		    <field name="phone" />
-		    <field name="address" />
-		    <field name="pob" />
-		    <field name="curyear" />
-		    <field name="nation" />
-		    <field name="race" />
-		    <field name="religion" />
-		    <field name="gender" />
-		    <field name="email" />
-		    <field name="fees" />
-		    <field name="major_id" />
-                </tree>
-            </field>
-        </record>
-	
-	<record model="ir.actions.act_window" id="action_student_entry">
+	<record id="open_view_student_list_my" model="ir.actions.act_window">
             <field name="name">Student</field>
-            <field name="res_model">student.student</field>
+            <field name="res_model">hr.employee</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_student_entry_tree" />
-            <!-- <field name="domain">[('state', '!=', 'unassigned')]</field> -->
-            <!--<field name="search_view_id" ref="task_filter_view"/> -->
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('student','=',1)]</field>
+            <field name="context">{'default_student':1}</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="hr.view_employee_filter"/>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">
-                    Click to create a new student.
-                </p><p>
-                    First paragraph...
-                </p><p>
-                    Another paragraph...
-                </p>
+              <p class="oe_view_nocontent_create">
+                Click to add a new Student.
+              </p><p>
+                With just a quick glance on the Odoo teacher screen, you
+                can easily find all the information you need for each person;
+                contact data, job position, availability, etc.
+              </p>
             </field>
         </record>
 	
-        <menuitem id="menu_student" name="Student" parent="menu_enroll_related" sequence="2"
-                  action="action_student_entry" />
+	<menuitem id="menu_student" name="Student" sequence="2"
+                  action="open_view_student_list_my" parent="menu_enroll_related" />
     </data>
 </openerp>
