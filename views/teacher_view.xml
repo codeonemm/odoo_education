@@ -2,6 +2,10 @@
 <openerp>
     <data>
 	
+	<!-- Menu Items -->
+        <menuitem id="menu_root" name="Education" sequence="112" />
+        <menuitem id="menu_enroll_related" name="Enroll Management" parent="menu_root"/>
+	
 	<record id="view_employee_form_inherit" model="ir.ui.view">
             <field name="name">hr.employee.form.inherit</field>
             <field name="model">hr.employee</field>
