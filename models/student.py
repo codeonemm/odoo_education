@@ -9,7 +9,7 @@ class student(models.Model):
     nation = fields.Many2one("nation" ,"Nationality", select=True)
     pob = fields.Char("Place of Birth")
     martial = fields.Selection([('single', 'Single'), ('married', 'Married')], "Martial Status")
-    curyear = fields.Char("Current Year")
+    curyear = fields.Many2one("year", "Current Year", select=True)
     religion = fields.Selection([('buddhism', 'Buddhism'), ('christianity', 'Christianity'), ('hinduism', 'Hinduism'), ('islam', 'Islam')], "Religion")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], "Gender")
     major_id = fields.Many2one("major", "Major", select=True)
@@ -20,4 +20,9 @@ class student(models.Model):
     student = fields.Boolean("Student", domain=[('student', '=', True)])
     
     attachment_ids = fields.Many2many("ir.attachment", string="Attachments")
+    
+class year(models.Model):
+    _name = "year"
+    
+    year = fields.Char("Current Year", required=True, select=True)    
 
