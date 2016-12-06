@@ -2,6 +2,6 @@ Education Management System Odoo Module
 =====================
 
 * Enroll Management
-* Attance Management
+* Attendance Management
 * Exam Result Management
 * Library Management
