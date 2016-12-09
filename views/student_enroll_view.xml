@@ -17,8 +17,8 @@
                         </h3>
 			<group>
 			    <group colspan="4" col="4">
-				<field name="student_id" />
-				<field name="teacher_id" />
+				<field name="student_id" context="{'default_teacher':0, 'default_student':1}"/>
+				<field name="teacher_id" context="{'default_teacher':1, 'default_student':0}"/>
 				<field name="fees" />
 			    </group>
 			</group>

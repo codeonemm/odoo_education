@@ -12,6 +12,21 @@
 	    <field name="inherit_id" ref="hr.view_employee_form"/>
 	    <field name="domain">[('teacher','=',1)]</field>
 	    <field name="arch" type="xml">
+		<field name="category_ids" position="after">
+		    <label for="email" class="oe_edit_only"/>
+		    <field name="email" widget="email"/>
+		    <label for="phone" class="oe_edit_only"/>
+		    <field name="phone"/>
+		</field>
+		<field name="work_email" position="replace">
+		</field>
+		<field name="work_phone" position="replace">
+		</field>
+		<xpath expr="//sheet/notebook/page/group/group/field[@name='address_id']" position="replace">
+		</xpath>
+		<field name="mobile_phone" position="attributes">
+		    <attribute name="string">Mobile</attribute>
+		</field>
 		<field name="user_id" position="after">
 		    <field name="teacher" />
 		</field>

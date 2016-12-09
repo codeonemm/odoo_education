@@ -19,8 +19,3 @@ class student(models.Model):
     student = fields.Boolean("Student", domain=[('student', '=', True)])
     
     attachment_ids = fields.Many2many("ir.attachment", string="Attachments")
-    
-    _defaults = {
-	'teacher': 'false',
-	'student': 'true'
-    }
