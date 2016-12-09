@@ -10,6 +10,7 @@
 		    "views/student_enroll_view.xml",
 		    
 		    "sequences/sequence_settings.xml",
+		    "workflow/student_enroll_workflow.xml"
                 ],
 	'qweb': [],
 	'application': False,

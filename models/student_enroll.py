@@ -9,13 +9,29 @@ class student_enroll(models.Model):
     student_id = fields.Many2one('hr.employee', string="Student", domain=[('student', '=', True)], required=True)
     teacher_id = fields.Many2one('hr.employee', string="Responsible Person", domain=[('teacher', '=', True)], required=True)
     fees = fields.Float("Fees", required=True)
-    state = fields.Selection([("draft", "Draft"), ("confirm", "Confirm"), 
+    state = fields.Selection([("draft", "Draft"), ("confirm", "Confirm"),
 				("pay", "Pay"), ("book_receive", "Book Receive"), ("done", "Done")], "State", readonly=True)
 
     _defaults = {
 	'state': 'draft'
     }
     
+    def confirm(self, cr, uid, ids, context=None):
+        self.write(cr, uid, ids, {'state': 'confirm'})
+        return True
+	
+    def pay(self, cr, uid, ids, context=None):
+        self.write(cr, uid, ids, {'state': 'pay'})
+        return True
+	
+    def book_receive(self, cr, uid, ids, context=None):
+	self.write(cr, uid, ids, {'state': 'book_receive'})
+	return True
+	
+    def done(self, cr, uid, ids, context=None):
+	self.write(cr, uid, ids, {'state': 'done'})
+	return True		
+	
     @api.model
     def create(self, vals):
 	if self.name == False:

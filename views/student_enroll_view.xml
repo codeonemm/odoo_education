@@ -9,6 +9,10 @@
             <field name="arch" type="xml">
                 <form string="Student">
 		    <header>
+			<button name="confirm" string="Confirm" class="oe_highlight" states="draft"/>
+			<button name="pay" string="Pay" class="oe_highlight" states="confirm"/>
+			<button name="book_receive" string="Book Receive" class="oe_highlight" states="pay"/>
+			<button name="done" string="Done" class="oe_highlight" states="book_receive"/>
 			<field name="state" widget="statusbar" statusbar_visiable="draft, confirm, pay, book_receive, done" />
 		    </header>
 		    <sheet>
@@ -36,6 +40,7 @@
 		    <field name="name" />
                     <field name="student_id" />
 		    <field name="fees" />
+		    <field name="state" />
                 </tree>
             </field>
         </record>
