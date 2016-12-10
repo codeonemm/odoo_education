@@ -9,11 +9,13 @@ class student_enroll(models.Model):
     student_id = fields.Many2one('hr.employee', string="Student", domain=[('student', '=', True)], required=True)
     teacher_id = fields.Many2one('hr.employee', string="Responsible Person", domain=[('teacher', '=', True)], required=True)
     fees = fields.Float("Fees", required=True)
+    reg_date = fields.Date("Registration Date", required=True)
     state = fields.Selection([("draft", "Draft"), ("confirm", "Confirm"),
 				("pay", "Pay"), ("book_receive", "Book Receive"), ("done", "Done")], "State", readonly=True)
 
     _defaults = {
-	'state': 'draft'
+	'state': 'draft',
+	'reg_date': fields.Date.today
     }
     
     def confirm(self, cr, uid, ids, context=None):

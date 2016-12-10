@@ -24,6 +24,7 @@
 				<field name="student_id" context="{'default_teacher':0, 'default_student':1}"/>
 				<field name="teacher_id" context="{'default_teacher':1, 'default_student':0}"/>
 				<field name="fees" />
+				<field name="reg_date" />
 			    </group>
 			</group>
 		    </sheet>
@@ -40,6 +41,7 @@
 		    <field name="name" />
                     <field name="student_id" />
 		    <field name="fees" />
+		    <field name="reg_date" />
 		    <field name="state" />
                 </tree>
             </field>
